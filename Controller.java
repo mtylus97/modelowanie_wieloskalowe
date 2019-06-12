@@ -1,6 +1,5 @@
 
-import javafx.concurrent.WorkerStateEvent;
-import javafx.event.EventHandler;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.canvas.Canvas;
@@ -9,11 +8,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
-
-import javafx.embed.swing.SwingFXUtils;
-import java.awt.image.BufferedImage;
-import java.awt.*;
-
 
 
 import java.net.URL;
@@ -27,25 +21,37 @@ public class Controller implements Initializable {
     @FXML private Button stop;
     @FXML private TextField widthField;
     @FXML private TextField heightField;
+    @FXML private TextField jednorodneX;
+    @FXML private TextField jednorodneY;
+    @FXML private TextField randomField;
+    @FXML private TextField radiusField;
+    @FXML private TextField iField;
     @FXML private ComboBox startStateBox;
-    private int width, height;
+    private int width, height, jednorodnex, jednorodney, random, radius, iter;
 
-    private DrawerTask task;
+    private Board task;
     protected String startState;
+    private Thread thread;
 
 
     @FXML
-    private void handleRunBtnAction(){
+    private void handleRunBtnAction() throws InterruptedException {
+
 
         width = Integer.parseInt(widthField.getText());
         height = Integer.parseInt(heightField.getText());
+        jednorodnex = Integer.parseInt(jednorodneX.getText());
+        jednorodney = Integer.parseInt(jednorodneY.getText());
+        random= Integer.parseInt(randomField.getText());
         startState = (String)startStateBox.getSelectionModel().getSelectedItem();
+        radius = Integer.parseInt(radiusField.getText());
+        iter  = Integer.parseInt(iField.getText());
         GraphicsContext  gc  =  canvas.getGraphicsContext2D();
-        // BufferedImage bi= new BufferedImage(600, 400, BufferedImage.TYPE_INT_RGB);
         System.out.println(startState);
-        task = new DrawerTask(height,width, startState, gc);
+        task = new Board(height,width, startState,jednorodnex, jednorodney, random, radius, iter, gc);
 
-        new Thread(task).start();
+        thread = new Thread(task);
+        thread.start();
 
     }
 
@@ -68,5 +74,16 @@ public class Controller implements Initializable {
                 gc.getCanvas().getWidth(),
                 gc.getCanvas().getHeight());
     }
+
+    public void handleEnBtnAction(ActionEvent actionEvent) {
+        task.clearScreen();
+        task.drawDislocation();
+    }
+
+    public void handleretAction(ActionEvent actionEvent) {
+        task.draw();
+        task.drawDislocation();
+    }
+
 
 }

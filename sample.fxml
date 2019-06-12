@@ -10,25 +10,45 @@
 <?import java.lang.*?>
 <?import javafx.scene.control.ComboBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
     <children>
-        <Canvas fx:id="canvas" height="400.0" layoutX="23.0" layoutY="27.0" width="600.0" />
-        <Button fx:id="start" layoutX="109.0" layoutY="515.0" mnemonicParsing="false" onAction="#handleRunBtnAction" text="START" />
-        <Button fx:id="stop" layoutX="109.0" layoutY="552.0" mnemonicParsing="false" onAction="#handleStopBtnAction" prefHeight="25.0" prefWidth="50.0" text="STOP" />
-        <TextField fx:id="widthField" layoutX="109.0" layoutY="478.0" prefHeight="25.0" prefWidth="79.0" text="200"  />
-        <Label layoutX="39.0" layoutY="482.0" text="Szerokość:" />
-        <TextField fx:id="heightField" layoutX="308.0" layoutY="478.0" prefHeight="25.0" prefWidth="79.0" text="200" />
-        <Label layoutX="240.0" layoutY="482.0" text="Wysokość:" />
-        <ComboBox fx:id="startStateBox" layoutX="507.0" layoutY="478.0" prefHeight="25.0" prefWidth="100.0" promptText="Wybierz">
+        <Canvas fx:id="canvas" height="600.0" layoutX="23.0" layoutY="27.0" width="600.0" style="-fx-color: white"/>
+        <Button fx:id="start" layoutX="800.0" layoutY="750.0" mnemonicParsing="false" onAction="#handleRunBtnAction" text="START" />
+        <Button fx:id="stop" layoutX="900.0" layoutY="750.0" mnemonicParsing="false" onAction="#handleStopBtnAction"  text="STOP" />
+        <TextField fx:id="widthField" layoutX="109.0" layoutY="750.0" prefHeight="25.0" prefWidth="79.0" text="70"  />
+        <Label layoutX="29.0" layoutY="750.0" text="Szerokość: " />
+        <TextField fx:id="heightField" layoutX="308.0" layoutY="750.0" prefHeight="25.0" prefWidth="79.0" text="70" />
+        <Label layoutX="230.0" layoutY="750.0" text="Wysokość: " />
+        <ComboBox fx:id="startStateBox" layoutX="600.0" layoutY="750.0" prefHeight="25.0" prefWidth="150.0" promptText="Wybierz" >
             <items>
-                    <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="oscylator" />
-                        <String fx:value="glider" />
-                        <String fx:value="niezmienny" />
-                        <String fx:value="losowy" />
-                    </FXCollections>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Random" />
+                    <String fx:value="Jednorodne" />
+                    <String fx:value="Z promieniem" />
+                    <String fx:value="Wyklikanie" />
+                </FXCollections>
             </items>
         </ComboBox>
-        <Label layoutX="451.0" layoutY="482.0" text="Typ gry:" />
+        <Label layoutX="449.0" layoutY="750.0" text="Rodzaj zarodkowania: " />
+
+        <Label layoutX="650.0" layoutY="25.0" text="RANDOM:"/>
+        <Label layoutX="650.0" layoutY="50.0" text="Ile wstawić: "/>
+        <TextField fx:id="randomField" layoutX="750" layoutY="48" prefHeight="25.0" prefWidth="79.0" text="8"/>
+
+        <Label layoutX="650.0" layoutY="75.0" text="JEDNORODNE:"/>
+        <Label layoutX="650.0" layoutY="100.0" text="Ile wstawić w kolumnie: "/>
+        <TextField fx:id="jednorodneX" layoutX="820" layoutY="98" prefHeight="25.0" prefWidth="79.0" text="5"/>
+        <Label layoutX="650.0" layoutY="135.0" text="Ile wstawić w wierszu: "/>
+        <TextField fx:id="jednorodneY" layoutX="800" layoutY="133" prefHeight="25.0" prefWidth="79.0" text="5"/>
+
+
+        <Label layoutX="650.0" layoutY="175.0" text="Z PROMIENIEM:"/>
+        <Label layoutX="650.0" layoutY="200.0" text="Jaki promień: "/>
+        <TextField fx:id="radiusField" layoutX="750" layoutY="198" prefHeight="25.0" prefWidth="79.0" text="5"/>
+        <TextField fx:id="iField" layoutX="750" layoutY="250" prefHeight="25.0" prefWidth="79.0" text="10"/>
+        <Button fx:id="ENERGIA" layoutX="750.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleEnBtnAction" text="DYSLOKACJA" />
+        <Button fx:id="return" layoutX="750.0" layoutY="360.0" mnemonicParsing="false" onAction="#handleretAction" text="POWRÓT" />
+
+
     </children>
 </AnchorPane>
